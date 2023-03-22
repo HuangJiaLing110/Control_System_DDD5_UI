@@ -1,0 +1,48 @@
+/** ele admin pro variables license by http://eleadmin.com */
+@import '~ant-design-vue/lib/style/themes/default.less';
+
+// 框架布局最小z-index(多页签[最小]->「顶栏|侧栏」[+2|+3|+1]->移动端遮罩层[+3])
+@layout-z-index: 99;
+
+// 侧边栏
+@sidebar-width: 210px; // 侧边栏宽度
+@sidebar-collapse-width: 48px; // 侧边栏折叠后宽度
+@sidebar-light-shadow: 1px 3px 3px rgba(0, 0, 0, .08); // 侧栏亮色阴影
+@sidebar-dark-shadow: 0 4px 4px rgba(0, 21, 41, .35); // 侧栏暗色阴影
+@sidebar-colorful-icon-width: 26px; // 侧边栏彩色图标宽度
+@sidebar-colorful-icon-size: @font-size-base; // 侧边栏彩色图标字体大小
+@sidebar-transition-anim: .3s cubic-bezier(0.2, 0, 0, 1) 0s; // 侧边栏过渡动画
+@sidebar-transition: width @sidebar-transition-anim, left @sidebar-transition-anim; // 侧边栏过渡动效
+@sidebar-nav-width: 80px; // 侧边栏一级菜单宽度
+@sidebar-nav-padding: 0 @padding-xs; // 侧边栏一级菜单内间距
+@sidebar-collapse-nav-padding: 0 @padding-xss; // 侧边栏折叠后一级菜单内间距
+@sidebar-nav-font-size: @font-size-sm; // 侧边栏一级菜单item字体大小
+@sidebar-nav-icon-font-size: @font-size-lg; // 侧边栏一级菜单item图标字体大小
+@sidebar-nav-item-padding: @padding-sm 0; // 侧边栏一级菜单item内间距
+@sidebar-collapse-nav-item-padding: @padding-sm 0; // 侧边栏一级菜单折叠后item内间距
+@sidebar-nav-item-title-margin: @padding-xs 0 0 0; // 侧边栏一级菜单item标题外间距
+@sidebar-nav-item-margin: @padding-xss 0 0 0; // 侧边栏一级菜单item外间距
+@sidebar-collapse-nav-item-margin: @padding-xss 0 @padding-xs 0; // 侧边栏折叠后一级菜单item外间距
+
+// 顶栏
+@header-height: 48px; // 顶栏高度
+@header-light-shadow: 0 1px 4px rgba(0, 21, 41, .08); // 顶栏亮色阴影
+@header-dark-shadow: 0 1px 3px rgba(0, 0, 0, .08); // 顶栏暗色阴影
+@header-avatar-size: 28px; // 顶栏头像大小
+@header-tool-hover-bg: rgba(0, 0, 0, .025); // 顶栏工具按钮hover背景
+@header-dark-tool-hover-bg: none; // 顶栏暗色工具按钮hover背景
+
+// logo
+@logo-size: 30px; // logo大小
+@logo-font-size: @font-size-lg + 2px; // logo文字大小
+@logo-light-color: @heading-color; // logo亮色文字颜色
+@logo-dark-color: @menu-dark-selected-item-text-color; // logo暗色文字颜色
+@logo-light-shadow: 1px 2px 3px rgba(0, 0, 0, .08); // logo亮色阴影
+@logo-dark-shadow: 0 3px 4px rgba(0, 21, 41, .35); // logo暗色阴影
+
+// 标签页
+@tabs-height: 40px; // 标签页高度
+@tabs-card-padding: @padding-xs; // 标签页卡片式间距
+
+// 主体内容定宽
+@body-limit-width: 1200px;

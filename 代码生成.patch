@@ -1,0 +1,549 @@
+Index: erp-boot/erp/src/main/java/com/mt/erp/entity/test/Demo1.java
+===================================================================
+--- erp-boot/erp/src/main/java/com/mt/erp/entity/test/Demo1.java	(revision 917343b995f5388daad904f64f8b6b0b1b4af12e)
++++ erp-boot/erp/src/main/java/com/mt/erp/entity/test/Demo1.java	(revision 917343b995f5388daad904f64f8b6b0b1b4af12e)
+@@ -1,169 +0,0 @@
+-package com.mt.erp.entity.test;
+-
+-import javax.persistence.*;
+-import java.io.Serializable;
+-import com.mt.common.core.annotation.DColumn;
+-import com.mt.common.core.annotation.DEntity;
+-import com.mt.common.core.web.base.BaseEntity;
+-import io.swagger.annotations.ApiModel;
+-import io.swagger.annotations.ApiModelProperty;
+-
+-
+-
+-import com.mt.erp.entity.test.CodeTable;
+-import java.util.List;
+-
+-@DEntity(label="码表",comment="",moduleLabel="测试1")
+-@Entity(name="erp_demo_1")
+-@Table(name = "erp_demo_1" , indexes = { @Index(name = "index_parent_id", columnList = "parent_id"),@Index(name = "index_sex", columnList = "sex")  })
+-@ApiModel(description = "码表:")
+-public class Demo1 extends BaseEntity implements Serializable{
+-	private static final long serialVersionUID = 1L;
+-
+-	@DColumn(index=3,label="名称",comment="名称")
+-	@ApiModelProperty(value = "名称:名称")
+-	@Column(name="name",length=200,nullable=true,unique=false)
+-	private String name;
+-
+-	@DColumn(index=4,label="码表全名",comment="为码表类型名称加所有父级名称,加本级名称")
+-	@ApiModelProperty(value = "码表全名:为码表类型名称加所有父级名称,加本级名称")
+-	@Column(name="fullname",length=200,nullable=false,unique=false)
+-	private String fullname;
+-
+-	@DColumn(index=5,label="码表类型",comment="码表种类")
+-	@ApiModelProperty(value = "码表类型:码表种类")
+-	@Column(name="code_type",length=100,nullable=false,unique=false)
+-	private String codeType;
+-
+-	@DColumn(index=6,label="父级名称",comment="父级名称")
+-	@ApiModelProperty(value = "父级名称:父级名称")
+-	@Column(name="parent_fullname",length=100,nullable=true,unique=false)
+-	private String parentFullname;
+-
+-	@DColumn(index=7,label="父级",foreignEntity="CodeTable",comment="父级")
+-	@ApiModelProperty(value = "父级:父级")
+-	@Column(name="parent_id",length=255,nullable=true,unique=false)
+-	private Long parentId;
+-
+-	@Transient
+-	private CodeTable parent;
+-
+-	@Transient
+-	@ApiModelProperty(value = "父级名称:父级")
+-	@DColumn(index=7,label="父级",foreignEntity="CodeTable",comment="父级")
+-	private String parentName;
+-
+-	@DColumn(index=8,label="显示顺序",comment="显示顺序")
+-	@ApiModelProperty(value = "显示顺序:显示顺序")
+-	@Column(name="display_order",length=255,nullable=true,unique=false)
+-	private Integer displayOrder;
+-
+-	@Transient
+-	private List<CodeTable> children;
+-
+-	@DColumn(index=10,label="有子码表",comment="是否有孩子节点")
+-	@ApiModelProperty(value = "有子码表:是否有孩子节点")
+-	@Column(name="has_children",length=255,nullable=true,unique=false)
+-	private Boolean hasChildren;
+-
+-	@DColumn(index=11,label="性别",codeTable="Gender",codeTableOptions="男,女,未知",comment="性别")
+-	@ApiModelProperty(value = "性别:性别")
+-	@Column(name="sex",length=255,nullable=true,unique=false)
+-	private String sex;
+-
+-
+-	public String getName() {
+-		return this.name;
+-	}
+-
+-	public void setName(String name) {
+-		this.name = name;
+-	}
+-
+-	public String getFullname() {
+-		return this.fullname;
+-	}
+-
+-	public void setFullname(String fullname) {
+-		this.fullname = fullname;
+-	}
+-
+-	public String getCodeType() {
+-		return this.codeType;
+-	}
+-
+-	public void setCodeType(String codeType) {
+-		this.codeType = codeType;
+-	}
+-
+-	public String getParentFullname() {
+-		return this.parentFullname;
+-	}
+-
+-	public void setParentFullname(String parentFullname) {
+-		this.parentFullname = parentFullname;
+-	}
+-
+-	public Long getParentId() {
+-		return this.parentId;
+-	}
+-
+-	public void setParentId(Long parentId) {
+-		this.parentId = parentId;
+-	}
+-
+-	public Integer getDisplayOrder() {
+-		return this.displayOrder;
+-	}
+-
+-	public void setDisplayOrder(Integer displayOrder) {
+-		this.displayOrder = displayOrder;
+-	}
+-
+-	public List<CodeTable> getChildren() {
+-		return this.children;
+-	}
+-
+-	public void setChildren(List<CodeTable> children) {
+-		this.children = children;
+-	}
+-
+-	public Boolean getHasChildren() {
+-		return this.hasChildren;
+-	}
+-
+-	public void setHasChildren(Boolean hasChildren) {
+-		this.hasChildren = hasChildren;
+-	}
+-
+-	public String getSex() {
+-		return this.sex;
+-	}
+-
+-	public void setSex(String sex) {
+-		this.sex = sex;
+-	}
+-
+-	public CodeTable getParent() {
+-		return this.parent;
+-	}
+-
+-	public void setParent(CodeTable parent) {
+-		if(parent == null){
+-			return;
+-		}
+-		this.parentId = parent.getEId();
+-		this.parent = parent;
+-	}
+-
+-	public String getParentName() {
+-		return this.parentName;
+-	}
+-
+-	public void setParentName(String parentName) {
+-		this.parentName = parentName;
+-	}
+-
+-
+-
+-}
+Index: erp-boot/erp-starter/src/main/resources/config.yml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- erp-boot/erp-starter/src/main/resources/config.yml	(revision 917343b995f5388daad904f64f8b6b0b1b4af12e)
++++ erp-boot/erp-starter/src/main/resources/config.yml	(date 1624354997790)
+@@ -11,6 +11,7 @@
+   staticOthFilePath: D:\\DDDOthFile\\
+ 
+ 
++
+   applicationName: 框架
+   applicationCode: DDD4
+   shortCode: DD
+Index: erp-boot/generate/src/main/resources/frameResource/js/List-RawData.vm
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- erp-boot/generate/src/main/resources/frameResource/js/List-RawData.vm	(revision 917343b995f5388daad904f64f8b6b0b1b4af12e)
++++ erp-boot/generate/src/main/resources/frameResource/js/List-RawData.vm	(date 1624354997517)
+@@ -2,7 +2,7 @@
+ #set($extension=".vue")
+ #set($EntityNameUp="${entityClass.className}")
+ #set($EntityNameLow="${entityClass.className.substring(0,1).toLowerCase()}${entityClass.className.substring(1)}")
+-#set($path="${config.uiPath}/src/view/${entityClass.subSystemName}/${entityClass.moduleName}")
++#set($path="${config.uiPath}/src/views/${entityClass.subSystemName}/${entityClass.moduleName}")
+ #set($outputFile="${path}/${EntityNameUp}${vmType}${extension}")
+ #set($permission="${entityClass.subSystemName}_${entityClass.moduleName}_${EntityNameUp}")
+ 
+Index: erp-boot/generate/src/main/resources/frameResource/js/List.vm
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- erp-boot/generate/src/main/resources/frameResource/js/List.vm	(revision 917343b995f5388daad904f64f8b6b0b1b4af12e)
++++ erp-boot/generate/src/main/resources/frameResource/js/List.vm	(date 1624354997540)
+@@ -2,7 +2,7 @@
+ #set($extension=".vue")
+ #set($EntityNameUp="${entityClass.className}")
+ #set($EntityNameLow="${entityClass.className.substring(0,1).toLowerCase()}${entityClass.className.substring(1)}")
+-#set($path="${config.uiPath}/src/view/${entityClass.subSystemName}/${entityClass.moduleName}")
++#set($path="${config.uiPath}/src/views/${entityClass.subSystemName}/${entityClass.moduleName}")
+ #set($outputFile="${path}/${EntityNameUp}${vmType}${extension}")
+ #set($permission="${entityClass.subSystemName}_${entityClass.moduleName}_${EntityNameUp}")
+ 
+Index: erp-boot/generate/src/main/resources/frameResource/js/Display-RawData.vm
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- erp-boot/generate/src/main/resources/frameResource/js/Display-RawData.vm	(revision 917343b995f5388daad904f64f8b6b0b1b4af12e)
++++ erp-boot/generate/src/main/resources/frameResource/js/Display-RawData.vm	(date 1624354997615)
+@@ -2,7 +2,7 @@
+ #set($extension=".vue")
+ #set($EntityNameUp="${entityClass.className}")
+ #set($EntityNameLow="${entityClass.className.substring(0,1).toLowerCase()}${entityClass.className.substring(1)}")
+-#set($path="${config.uiPath}/src/view/${entityClass.subSystemName}/${entityClass.moduleName}")
++#set($path="${config.uiPath}/src/views/${entityClass.subSystemName}/${entityClass.moduleName}")
+ #set($outputFile="${path}/${EntityNameUp}${vmType}${extension}")
+ 
+ <template>
+Index: erp-boot/generate/src/main/resources/frameResource/js/Display.vm
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- erp-boot/generate/src/main/resources/frameResource/js/Display.vm	(revision 917343b995f5388daad904f64f8b6b0b1b4af12e)
++++ erp-boot/generate/src/main/resources/frameResource/js/Display.vm	(date 1624354997662)
+@@ -2,7 +2,7 @@
+ #set($extension=".vue")
+ #set($EntityNameUp="${entityClass.className}")
+ #set($EntityNameLow="${entityClass.className.substring(0,1).toLowerCase()}${entityClass.className.substring(1)}")
+-#set($path="${config.uiPath}/src/view/${entityClass.subSystemName}/${entityClass.moduleName}")
++#set($path="${config.uiPath}/src/views/${entityClass.subSystemName}/${entityClass.moduleName}")
+ #set($outputFile="${path}/${EntityNameUp}${vmType}${extension}")
+ 
+ <template>
+Index: erp-boot/generate/src/main/java/com/ddd/dev/generator/codegenerator/BaseCodeGenerator.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- erp-boot/generate/src/main/java/com/ddd/dev/generator/codegenerator/BaseCodeGenerator.java	(revision 917343b995f5388daad904f64f8b6b0b1b4af12e)
++++ erp-boot/generate/src/main/java/com/ddd/dev/generator/codegenerator/BaseCodeGenerator.java	(date 1624354997340)
+@@ -88,7 +88,7 @@
+ 			generator.generate(tempName);
+ 		}
+ 
+-		RouteUtil.mergeRoutes(Config.uiPath+ File.separator+"src/view");
++		RouteUtil.mergeRoutes(Config.uiPath+ File.separator+"src/views");
+ 		try {
+ 			this.createModule(entityClass,controllerGenerator.getLastOutputFile());
+ 		} catch (IOException e) {
+Index: erp-boot/generate/src/main/java/com/ddd/dev/generator/controller/GeneratorController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- erp-boot/generate/src/main/java/com/ddd/dev/generator/controller/GeneratorController.java	(revision 917343b995f5388daad904f64f8b6b0b1b4af12e)
++++ erp-boot/generate/src/main/java/com/ddd/dev/generator/controller/GeneratorController.java	(date 1624354997368)
+@@ -86,6 +86,7 @@
+         return this.generatorService.generateMethod(controllerMethodName);
+     }
+ 
++
+ //    @GetMapping("/createSuperOperator")
+ //    public  void createSuperOperator() throws IOException {
+ //        this.operatorService.createSuperUser();
+Index: erp-boot/generate/src/main/resources/frameResource/js/Route-RawData.vm
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- erp-boot/generate/src/main/resources/frameResource/js/Route-RawData.vm	(revision 917343b995f5388daad904f64f8b6b0b1b4af12e)
++++ erp-boot/generate/src/main/resources/frameResource/js/Route-RawData.vm	(date 1624354997689)
+@@ -2,7 +2,7 @@
+ #set($extension=".js")
+ #set($EntityNameUp="${entityClass.className}")
+ #set($EntityNameLow="${entityClass.className.substring(0,1).toLowerCase()}${entityClass.className.substring(1)}")
+-#set($path="${config.uiPath}/src/view/${entityClass.subSystemName}/${entityClass.moduleName}")
++#set($path="${config.uiPath}/src/views/${entityClass.subSystemName}/${entityClass.moduleName}")
+ #set($outputFile="${path}/${EntityNameUp}${vmType}${extension}")
+ 
+ 
+Index: erp-boot/generate/src/main/resources/frameResource/js/Route.vm
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- erp-boot/generate/src/main/resources/frameResource/js/Route.vm	(revision 917343b995f5388daad904f64f8b6b0b1b4af12e)
++++ erp-boot/generate/src/main/resources/frameResource/js/Route.vm	(date 1624354997715)
+@@ -2,7 +2,7 @@
+ #set($extension=".js")
+ #set($EntityNameUp="${entityClass.className}")
+ #set($EntityNameLow="${entityClass.className.substring(0,1).toLowerCase()}${entityClass.className.substring(1)}")
+-#set($path="${config.uiPath}/src/view/${entityClass.subSystemName}/${entityClass.moduleName}")
++#set($path="${config.uiPath}/src/views/${entityClass.subSystemName}/${entityClass.moduleName}")
+ #set($outputFile="${path}/${EntityNameUp}${vmType}${extension}")
+ 
+ 
+Index: erp-boot/erp-starter/src/main/resources/application-dev.yml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- erp-boot/erp-starter/src/main/resources/application-dev.yml	(revision 917343b995f5388daad904f64f8b6b0b1b4af12e)
++++ erp-boot/erp-starter/src/main/resources/application-dev.yml	(date 1624354997816)
+@@ -13,5 +13,5 @@
+ # 日志配置
+ logging:
+   level:
+-    com.egao: DEBUG
++    com.mt: DEBUG
+     com.baomidou.mybatisplus: DEBUG
+Index: erp-boot/generate/src/main/resources/frameResource/java/Dao.vm
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- erp-boot/generate/src/main/resources/frameResource/java/Dao.vm	(revision 917343b995f5388daad904f64f8b6b0b1b4af12e)
++++ erp-boot/generate/src/main/resources/frameResource/java/Dao.vm	(date 1624354997285)
+@@ -19,7 +19,7 @@
+ @Component(value = "${EntityNameLow}Dao")
+ public interface ${EntityNameUp}Dao {
+ 
+-    /**
++    /**entityClass
+     * 根据分页参数查询${entityClass.label}集合
+     *
+     * @param pageDTO 分页条件
+Index: erp-boot/generate/src/main/resources/frameResource/js/Service-RawData.vm
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- erp-boot/generate/src/main/resources/frameResource/js/Service-RawData.vm	(revision 917343b995f5388daad904f64f8b6b0b1b4af12e)
++++ erp-boot/generate/src/main/resources/frameResource/js/Service-RawData.vm	(date 1624354997742)
+@@ -2,7 +2,7 @@
+ #set($extension=".js")
+ #set($EntityNameUp="${entityClass.className}")
+ #set($EntityNameLow="${entityClass.className.substring(0,1).toLowerCase()}${entityClass.className.substring(1)}")
+-#set($path="${config.uiPath}/src/view/${entityClass.subSystemName}/${entityClass.moduleName}")
++#set($path="${config.uiPath}/src/views/${entityClass.subSystemName}/${entityClass.moduleName}")
+ #set($outputFile="${path}/${EntityNameUp}${vmType}${extension}")
+ 
+ import {${entityClass.subSystemName}Server} from '@/tools/servers'
+Index: erp-boot/generate/src/main/resources/frameResource/js/Service.vm
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- erp-boot/generate/src/main/resources/frameResource/js/Service.vm	(revision 917343b995f5388daad904f64f8b6b0b1b4af12e)
++++ erp-boot/generate/src/main/resources/frameResource/js/Service.vm	(date 1624354997769)
+@@ -2,7 +2,7 @@
+ #set($extension=".js")
+ #set($EntityNameUp="${entityClass.className}")
+ #set($EntityNameLow="${entityClass.className.substring(0,1).toLowerCase()}${entityClass.className.substring(1)}")
+-#set($path="${config.uiPath}/src/view/${entityClass.subSystemName}/${entityClass.moduleName}")
++#set($path="${config.uiPath}/src/views/${entityClass.subSystemName}/${entityClass.moduleName}")
+ #set($outputFile="${path}/${EntityNameUp}${vmType}${extension}")
+ 
+ import {${entityClass.subSystemName}Server} from '@/tools/servers'
+Index: erp-ui/.env
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- erp-ui/.env	(revision 917343b995f5388daad904f64f8b6b0b1b4af12e)
++++ erp-ui/.env	(date 1624354997835)
+@@ -1,5 +1,5 @@
+-VUE_APP_VERSION=1.3.0
+-VUE_APP_NAME=Ele Admin Pro
++VUE_APP_VERSION=0.1
++VUE_APP_NAME=茂砼 ERP
+ #VUE_APP_API_BASE_URL=https://v1.eleadmin.com/api
+ VUE_APP_API_BASE_URL=http://localhost:8081/api
+ VUE_APP_API_SWAGGER_URL=http://localhost:8081/swagger-ui.html
+Index: erp-boot/generate/src/main/java/com/ddd/dev/generator/service/impl/GeneratorServiceBean.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- erp-boot/generate/src/main/java/com/ddd/dev/generator/service/impl/GeneratorServiceBean.java	(revision 917343b995f5388daad904f64f8b6b0b1b4af12e)
++++ erp-boot/generate/src/main/java/com/ddd/dev/generator/service/impl/GeneratorServiceBean.java	(date 1624354997401)
+@@ -204,7 +204,7 @@
+ 
+         newCodes.append("\t}\n");
+ 
+-        fileName = StringUtils.join(new String[]{Config.uiPath,"src/view",subSystemName,moduleName,entityClassName+"Service"+".js"},File.separator );
++        fileName = StringUtils.join(new String[]{Config.uiPath,"src/views",subSystemName,moduleName,entityClassName+"Service"+".js"},File.separator );
+         codes = FileUtils.readFileToString(new File(fileName), "UTF-8");
+         insertPos = StringUtils.lastIndexOf(codes, "}");
+         codes = StringUtils.substring(codes, 0, insertPos-1) + newCodes.toString() + StringUtils.substring(codes, insertPos);
+Index: erp-boot/generate/src/main/resources/frameResource/js/Form-RawData.vm
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- erp-boot/generate/src/main/resources/frameResource/js/Form-RawData.vm	(revision 917343b995f5388daad904f64f8b6b0b1b4af12e)
++++ erp-boot/generate/src/main/resources/frameResource/js/Form-RawData.vm	(date 1624354997918)
+@@ -2,7 +2,7 @@
+ #set($extension=".vue")
+ #set($EntityNameUp="${entityClass.className}")
+ #set($EntityNameLow="${entityClass.className.substring(0,1).toLowerCase()}${entityClass.className.substring(1)}")
+-#set($path="${config.uiPath}/src/view/${entityClass.subSystemName}/${entityClass.moduleName}")
++#set($path="${config.uiPath}/src/views/${entityClass.subSystemName}/${entityClass.moduleName}")
+ #set($outputFile="${path}/${EntityNameUp}${vmType}${extension}")
+ #set($permission="${entityClass.subSystemName}_${entityClass.moduleName}_${EntityNameUp}")
+ 
+Index: erp-boot/generate/src/main/resources/frameResource/js/Form.vm
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- erp-boot/generate/src/main/resources/frameResource/js/Form.vm	(revision 917343b995f5388daad904f64f8b6b0b1b4af12e)
++++ erp-boot/generate/src/main/resources/frameResource/js/Form.vm	(date 1624354997948)
+@@ -2,7 +2,7 @@
+ #set($extension=".vue")
+ #set($EntityNameUp="${entityClass.className}")
+ #set($EntityNameLow="${entityClass.className.substring(0,1).toLowerCase()}${entityClass.className.substring(1)}")
+-#set($path="${config.uiPath}/src/view/${entityClass.subSystemName}/${entityClass.moduleName}")
++#set($path="${config.uiPath}/src/views/${entityClass.subSystemName}/${entityClass.moduleName}")
+ #set($outputFile="${path}/${EntityNameUp}${vmType}${extension}")
+ #set($permission="${entityClass.subSystemName}_${entityClass.moduleName}_${EntityNameUp}")
+ 
+Index: erp-ui/src/views/tool/generator/index.vue
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- erp-ui/src/views/tool/generator/index.vue	(revision 917343b995f5388daad904f64f8b6b0b1b4af12e)
++++ erp-ui/src/views/tool/generator/index.vue	(date 1624354997316)
+@@ -5,8 +5,12 @@
+               ref="modelConfigForm"
+               :rules="rules"
+       >
+-
+-        <a-row>
++        <a-row :gutter="[16,16]">
++          <a-col :span="24">
++            <a-alert message="输入实体定义" description="请从实体定义表格中复制实体定义粘贴到下面的窗体中" type="info"  show-icon />
++          </a-col>
++        </a-row>
++        <a-row :gutter="[16,16]">
+           <a-col :span="24">
+             <a-textarea v-model:value="modelConfig.modelDefinition" placeholder="textarea with clear icon" allow-clear
+                         auto-size />
+@@ -15,7 +19,31 @@
+ 
+ 
+         <a-form-item :wrapper-col="{ span: 14, offset: 4 }">
+-          <a-button type="primary" @click="doSubmit" :loading="loading">Create</a-button>
++          <a-button type="primary" @click="generateModel" :loading="loading">生成实体</a-button>
++
++        </a-form-item>
++      </a-form>
++    </a-card>
++    <a-card title="生成前后台">
++      <a-form :model="baseCodeConfig" :label-col="labelCol" :wrapper-col="wrapperCol"
++              ref="baseCodeConfigForm"
++              :rules="rules"
++      >
++        <a-row :gutter="[16,16]">
++          <a-col :span="24">
++            <a-alert message="输入实体名称" description="请下面的文本框中输入需要生成代码的实体名称，包含包名和类名，例如：com.mt.erp.entity.test.Demo1,如果一次生成多个，可以换行" type="info"  show-icon />
++          </a-col>
++        </a-row>
++        <a-row :gutter="[16,16]">
++          <a-col :span="24">
++            <a-textarea v-model:value="baseCodeConfig.className" placeholder="textarea with clear icon" allow-clear
++                        auto-size />
++          </a-col>
++        </a-row>
++
++
++        <a-form-item :wrapper-col="{ span: 14, offset: 4 }">
++          <a-button type="primary" @click="generateBaseCode" :loading="loading">生成代码</a-button>
+ 
+         </a-form-item>
+       </a-form>
+@@ -36,6 +64,9 @@
+         modelConfig: {
+           modelDefinition: '',
+         },
++        baseCodeConfig:{
++          className:'com.mt.erp.entity.test.Demo1',
++        },
+         // 表单验证规则
+         rules: {
+           modelConfig: [
+@@ -50,17 +81,39 @@
+ 
+     },
+     methods: {
+-      /* 提交 */
+-      doSubmit() {
++
++      generateModel() {
+ 
+         this.$refs.modelConfigForm.validate().then(() => {
+           this.loading = true;
+           let params = { params: this.modelConfig} ;
+-          let ddd = this.$http;
++
+           this.$http.get('/generate/generator/generateModel', params).then(() => {
+             // debugger
+             this.loading = false;
+             this.$message.success('生成成功');
++
++          }).catch((error) => {
++
++            this.loading = false;
++            this.$message.error("生成出错，原因是：" + error.message);
++          });
++        }).catch((error) => {
++          // debugger
++          this.loading = false;
++          this.$message.error(error.errorFields[0].errors);
++        });
++      },
++      generateBaseCode() {
++
++        this.$refs.baseCodeConfigForm.validate().then(() => {
++          this.loading = true;
++          let params = { params: this.baseCodeConfig} ;
++
++          this.$http.get('/generate/generator/generateBaseCode', params).then(() => {
++            // debugger
++            this.loading = false;
++            this.$message.success('生成成功');
+ 
+           }).catch((error) => {
+ 

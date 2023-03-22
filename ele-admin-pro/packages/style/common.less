@@ -1,0 +1,481 @@
+/** ele admin pro 公共样式 license by http://eleadmin.com */
+@import './var.less';
+
+body {
+  background: @layout-body-background;
+  //font-weight: 700;
+  font-family: 'Microsoft YaHei', Arial, Helvetica, sans-serif, '宋体' !important;
+}
+
+/* 辅助类 */
+// 页面主体
+.ele-body {
+  padding: @padding-md;
+
+  &.ele-body-card {
+    padding-bottom: 0;
+
+    .ant-card {
+      margin-bottom: @padding-md;
+    }
+  }
+}
+
+// 标题
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  font-weight: normal;
+  font-size: @font-size-lg;
+}
+
+h5 {
+  font-size: (@font-size-lg + 2px);
+}
+
+h4 {
+  font-size: (@font-size-lg + 4px);
+}
+
+h3 {
+  font-size: (@font-size-lg + 6px);
+}
+
+h2 {
+  font-size: (@font-size-lg + 8px);
+}
+
+h1 {
+  font-size: (@font-size-lg + 10px);
+}
+
+// 文字
+.ele-text {
+  color: @text-color;
+}
+
+.ele-text-heading {
+  color: @heading-color;
+}
+
+.ele-text-secondary {
+  color: @text-color-secondary;
+}
+
+.ele-text-placeholder {
+  color: @input-placeholder-color
+}
+
+.ele-text-primary {
+  color: @primary-color;
+}
+
+.ele-text-success,
+.ele-text-success:hover {
+  color: @success-color;
+}
+
+a.ele-text-success:hover {
+  color: color(~`colorPalette('@{success-color}', 5) `);
+}
+
+a.ele-text-success:active {
+  color: color(~`colorPalette('@{success-color}', 7) `);
+}
+
+.ele-text-warning,
+.ele-text-warning:hover {
+  color: @warning-color;
+}
+
+a.ele-text-warning:hover {
+  color: color(~`colorPalette('@{warning-color}', 5) `);
+}
+
+a.ele-text-warning:active {
+  color: color(~`colorPalette('@{warning-color}', 7) `);
+}
+
+.ele-text-danger,
+.ele-text-danger:hover {
+  color: @error-color;
+}
+
+a.ele-text-danger:hover {
+  color: color(~`colorPalette('@{error-color}', 5) `);
+}
+
+a.ele-text-danger:active {
+  color: color(~`colorPalette('@{error-color}', 7) `);
+}
+
+.ele-text-info {
+  color: @normal-color;
+}
+
+a.ele-text-info:hover {
+  color: color(~`colorPalette('@{normal-color}', 5) `);
+}
+
+a.ele-text-info:active {
+  color: color(~`colorPalette('@{normal-color}', 7) `);
+}
+
+.ele-text-delete {
+  text-decoration: line-through;
+}
+
+.ele-text-small {
+  font-size: @font-size-sm !important;
+}
+
+// 背景和边框
+.ele-bg-primary {
+  background-color: @primary-color !important;;
+}
+
+.ele-bg-success {
+  background-color: @success-color !important;;
+}
+
+.ele-bg-warning {
+  background-color: @warning-color !important;;
+}
+
+.ele-bg-danger {
+  background-color: @error-color !important;;
+}
+
+.ele-bg-info {
+  background-color: @normal-color !important;;
+}
+
+.ele-bg-white {
+  background-color: @component-background !important;;
+}
+
+.ele-bg-base {
+  background-color: @layout-body-background !important;;
+}
+
+.ele-border-primary {
+  border-color: @primary-color !important;;
+}
+
+.ele-border-success {
+  border-color: @success-color !important;;
+}
+
+.ele-border-warning {
+  border-color: @warning-color !important;;
+}
+
+.ele-border-danger {
+  border-color: @error-color !important;;
+}
+
+.ele-border-info {
+  border-color: @normal-color !important;;
+}
+
+// 元素浮动、对齐
+.ele-pull-left {
+  float: left;
+}
+
+.ele-pull-right {
+  float: right;
+}
+
+.ele-clear {
+  clear: both;
+}
+
+.ele-clear-after:after {
+  content: "";
+  clear: both;
+  display: block;
+}
+
+.ele-text-center {
+  text-align: center;
+}
+
+.ele-text-left {
+  text-align: left;
+}
+
+.ele-text-right {
+  text-align: right;
+}
+
+.ele-fluid {
+  width: 100% !important;
+}
+
+.ele-block {
+  display: block;
+}
+
+.ele-inline-block {
+  display: inline-block;
+}
+
+.ele-inline {
+  display: inline;
+}
+
+// 占位元素
+em:not([class]) {
+  padding: 0 0.5em;
+  font-style: normal;
+}
+
+s:not([class]) {
+  padding: 0 0.125em;
+  font-style: normal;
+}
+
+// 按钮加图标减少间距
+.ele-btn-icon:not(.ant-btn-sm) {
+  padding-left: @padding-sm;
+  padding-right: @padding-sm;
+}
+
+// 文字省略
+.ele-elip {
+  overflow: hidden;
+  white-space: nowrap;
+  word-break: break-all;
+  text-overflow: ellipsis;
+}
+
+/* 单元格 */
+.ele-cell {
+  display: flex;
+
+  &:not(.ele-cell-align-top) {
+    align-items: center;
+  }
+
+  &.ele-cell-align-bottom {
+    align-items: flex-end;
+  }
+
+  & > .ele-cell-content {
+    flex: 1;
+    box-sizing: border-box;
+  }
+
+  & > * + .ele-cell-content {
+    padding-left: @padding-sm;
+  }
+
+  .ele-cell-title {
+    color: @heading-color;
+    font-size: @font-size-base + 1px;
+  }
+
+  .ele-cell-desc {
+    color: @text-color-secondary;
+    font-size: @font-size-base - 1px;
+    margin-top: (@padding-xs / 2);
+  }
+}
+
+/* 底部工具栏 */
+.ele-bottom-tool {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  box-shadow: @shadow-1-up;
+  padding: @padding-xs @padding-md;
+  background: @component-background;
+  transition: padding-left @sidebar-transition-anim;
+  z-index: (@layout-z-index - 1);
+
+  .ele-bottom-tool-actions {
+    flex: 1;
+    text-align: right;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .ele-admin-sidebar + .ele-admin-body .ele-bottom-tool {
+    padding-left: (@sidebar-width + @padding-md);
+  }
+
+  .ele-layout-collapse .ele-admin-sidebar + .ele-admin-body .ele-bottom-tool {
+    padding-left: (@sidebar-collapse-width + @padding-md);
+  }
+}
+
+/* 数据表格头部工具栏 */
+.ele-table-tool {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: @padding-md - 6px;
+
+  .ele-table-tool-title {
+    flex: auto;
+    margin-top: 6px;
+    margin-bottom: 6px;
+  }
+
+  .ele-tool {
+    margin: 6px 0 6px auto;
+    overflow-y: hidden;
+
+    .ele-tool-item {
+      font-size: 16px;
+      cursor: pointer;
+    }
+  }
+
+  // 带表单的样式处理
+  &.ele-toolbar-form .ele-table-tool-title {
+    margin-top: 0;
+    margin-bottom: 0;
+
+    .ant-col {
+      margin-top: 6px;
+      margin-bottom: 6px;
+    }
+  }
+}
+
+// 带背景色
+.ele-table-tool-default {
+  margin-bottom: 0;
+  background: @table-header-bg;
+  padding: (@padding-xs - 6px) @padding-md;
+  border-top: @border-width-base @border-style-base @border-color-split;
+  border-left: @border-width-base @border-style-base @border-color-split;
+  border-right: @border-width-base @border-style-base @border-color-split;
+
+  .ele-tool .ele-tool-item {
+    font-size: 14px;
+    padding: 6px 7px;
+    box-sizing: border-box;
+    border: @border-width-base @border-style-base @border-color-base;
+    border-radius: 2px;
+    line-height: 1;
+  }
+}
+
+.ele-table-tool-default + .ant-table-wrapper .ant-table table {
+  border-radius: 0 0 0 0;
+}
+
+.ele-table-tool-default + .ant-table-wrapper .ant-table-thead > tr:first-child > th:last-child {
+  border-top-right-radius: 0;
+}
+
+.ele-table-tool-default + .ant-table-wrapper .ant-table-thead > tr:first-child > th:first-child {
+  border-top-left-radius: 0;
+}
+
+/* 组件样式调整 */
+// 表单详情
+.ele-form-detail .ant-form-item {
+  margin-bottom: 0;
+}
+
+@media (max-width: 575px) {
+  .ele-form-detail .ant-form-item-label {
+    line-height: @input-height-lg - 0.0001px;
+    padding-bottom: 0;
+
+    & > label:after {
+      display: inherit;
+    }
+  }
+}
+
+// 级联选择器增加高度
+.ele-pop-wrap-higher .ant-cascader-menu {
+  height: 280px;
+}
+
+// 分割线
+.ant-divider {
+  margin: 0;
+}
+
+/* 图表提示框圆点 */
+.ele-chart-dot {
+  width: 10px;
+  height: 10px;
+  margin-right: 5px;
+  border-radius: 50%;
+  display: inline-block;
+  background: #3aa1ff;
+}
+
+/* 顶部进度条 */
+#nprogress {
+  .bar {
+    background: @primary-color;
+  }
+
+  .peg {
+    box-shadow: 0 0 10px @primary-color, 0 0 5px @primary-color;
+  }
+
+  .spinner-icon {
+    border-top-color: @primary-color;
+    border-left-color: @primary-color;
+  }
+}
+
+/* 滚动条 */
+.ele-scrollbar-hover,
+.ele-scrollbar-hide {
+  overflow: auto;
+}
+
+@media screen and (min-width: 768px) {
+  ::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 5px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    border-radius: 6px;
+    border: 2px solid transparent;
+    background-color: @border-color-base;
+    background-clip: padding-box;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: @input-placeholder-color;
+  }
+
+  .ele-scrollbar-mini::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  .ele-scrollbar-mini::-webkit-scrollbar-track {
+    background: none;
+  }
+
+  .ele-scrollbar-mini::-webkit-scrollbar-thumb {
+    border-radius: 3px;
+    border: none;
+  }
+}
+
+.ele-scrollbar-hide::-webkit-scrollbar,
+.ele-scrollbar-hover:not(:hover)::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
